@@ -172,6 +172,7 @@ public class Karyawan {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)) {
             
+            System.out.println("\n----------- USERS LIST -----------");
             while (rs.next()) {
                 System.out.println("Nama: " + rs.getString("nama"));
                 System.out.println("ID  : " + rs.getString("id"));
