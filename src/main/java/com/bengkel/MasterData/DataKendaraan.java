@@ -1,5 +1,5 @@
 package com.bengkel.MasterData;
 
-public class KendaraanPelanggan {
+public class DataKendaraan {
     
 }

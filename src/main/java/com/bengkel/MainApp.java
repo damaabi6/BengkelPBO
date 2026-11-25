@@ -1,7 +1,7 @@
 package com.bengkel;
 
-import com.bengkel.Class.User;
-import com.bengkel.MasterData.Karyawan;
+import com.bengkel.Class.Karyawan.User;
+import com.bengkel.MasterData.DataKaryawan;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -139,7 +139,7 @@ public class MainApp extends Application {
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 
         Runnable refresh = () -> {
-            Main.staticUsersList = Karyawan.getAllUsers();
+            Main.staticUsersList = DataKaryawan.getAllUsers();
             table.setItems(FXCollections.observableArrayList(Main.staticUsersList));
         };
         refresh.run();
@@ -163,7 +163,7 @@ public class MainApp extends Application {
                 return;
             }
 
-            Karyawan.insertUser(nama, pass, cbAdmin.isSelected());
+            DataKaryawan.insertUser(nama, pass, cbAdmin.isSelected());
             refresh.run();
 
             tfNama.clear();
@@ -203,7 +203,7 @@ public class MainApp extends Application {
             confirm.setHeaderText(null);
             confirm.showAndWait().ifPresent(btn -> {
                 if (btn == ButtonType.YES) {
-                    Karyawan.deleteUser(selectedId);
+                    DataKaryawan.deleteUser(selectedId);
                     refresh.run();
                     setStatus(status, "Perintah Delete User dijalankan untuk '" + selected.getUsername() + "'.", true);
                 }
@@ -231,6 +231,10 @@ public class MainApp extends Application {
         root.setBottom(bottom);
 
         stage.setScene(new Scene(root, 650, 480));
+    }
+
+    private void adminShowMekanik() {
+
     }
 
     private void setStatus(Label label, String text, boolean ok) {

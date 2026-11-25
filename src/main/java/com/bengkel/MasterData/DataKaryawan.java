@@ -9,13 +9,13 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.bengkel.Class.User;
+import com.bengkel.Class.Karyawan.User;
 import com.bengkel.Utils.DBUtils;
 import com.bengkel.Main;
-import com.bengkel.Class.Admin;
-import com.bengkel.Class.Petugas;
+import com.bengkel.Class.Karyawan.Admin;
+import com.bengkel.Class.Karyawan.Petugas;
 
-public class Karyawan {
+public class DataKaryawan {
     
     private static final SecureRandom RANDOM = new SecureRandom();
 
@@ -65,7 +65,6 @@ public class Karyawan {
 
         try (Connection conn = DBUtils.getConnection()) {
 
-
             try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
                 insertStmt.setString(1, generateRandomId());
                 insertStmt.setString(2, username);
@@ -106,7 +105,7 @@ public class Karyawan {
             System.out.println("[KaryawanDB Error] User 'Admin1' tidak dapat dihapus");
             return;
         }
-        String sql = "DELETE FROM users WHERE (id = ? OR nama = ?)";
+        String sql = "DELETE FROM users WHERE (id = ? OR username = ?)";
 
         try (Connection conn = DBUtils.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {

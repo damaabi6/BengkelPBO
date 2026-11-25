@@ -1,11 +1,13 @@
 com\bengkel\Class\Petugas.class
 com\bengkel\Utils\DBUtils.class
 com\bengkel\Class\Motor.class
+com\bengkel\Enums\StatusKendaraan.class
 com\bengkel\Class\Mobil.class
 com\bengkel\MasterData\Karyawan.class
 com\bengkel\Class\Admin.class
 com\bengkel\MasterData\KendaraanPelanggan.class
 com\bengkel\Utils\TextUtils.class
+com\bengkel\Class\Bermesin.class
 com\bengkel\MainApp.class
 com\bengkel\Class\Mekanik.class
 module-info.class

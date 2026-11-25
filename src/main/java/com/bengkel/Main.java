@@ -1,28 +1,18 @@
 package com.bengkel;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import com.bengkel.Class.Admin;
-import com.bengkel.Class.Petugas;
-import com.bengkel.Class.User;
-import com.bengkel.Class.Admin.AdminCommands;
-import com.bengkel.MasterData.Karyawan;
-import com.bengkel.Utils.DBUtils;
+import com.bengkel.Class.Karyawan.Admin;
+import com.bengkel.Class.Karyawan.Petugas;
+import com.bengkel.Class.Karyawan.User;
+import com.bengkel.MasterData.DataKaryawan;
 import com.bengkel.Utils.TextUtils;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import static com.bengkel.Utils.DBUtils.getConnection;
 
@@ -30,11 +20,11 @@ import static com.bengkel.Utils.DBUtils.getConnection;
 public class Main {
 
     public static List<User> staticUsersList = new ArrayList<>();
-    public static List<Karyawan> staticKaryawansList = new ArrayList<>();
+    public static List<DataKaryawan> staticKaryawansList = new ArrayList<>();
 
     public static void main(String[] args) {
         // Jangan dihapus, membaca data user dari DB
-        staticUsersList = Karyawan.getAllUsers();
+        staticUsersList = DataKaryawan.getAllUsers();
         Application.launch(MainApp.class, args);
     }
 

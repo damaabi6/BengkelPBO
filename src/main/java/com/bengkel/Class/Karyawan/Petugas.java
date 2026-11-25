@@ -1,4 +1,4 @@
-package com.bengkel.Class;
+package com.bengkel.Class.Karyawan;
 
 public class Petugas extends User {
 
