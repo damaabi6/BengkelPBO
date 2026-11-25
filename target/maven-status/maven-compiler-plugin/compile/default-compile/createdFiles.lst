@@ -6,6 +6,9 @@ com\bengkel\MasterData\Karyawan.class
 com\bengkel\Class\Admin.class
 com\bengkel\MasterData\KendaraanPelanggan.class
 com\bengkel\Utils\TextUtils.class
+com\bengkel\MainApp.class
+com\bengkel\Class\Mekanik.class
+module-info.class
 com\bengkel\Class\User.class
 com\bengkel\Class\Kendaraan.class
 com\bengkel\Main.class

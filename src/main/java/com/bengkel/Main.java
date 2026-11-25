@@ -33,8 +33,6 @@ public class Main {
     public static List<Karyawan> staticKaryawansList = new ArrayList<>();
 
     public static void main(String[] args) {
-
-        DBUtils.dropTable("mekanik");
         // Jangan dihapus, membaca data user dari DB
         staticUsersList = Karyawan.getAllUsers();
         Application.launch(MainApp.class, args);

@@ -1,0 +1,4 @@
+--patch-module
+com.bengkel.bengkelpbo=_
+--add-reads
+com.bengkel.bengkelpbo=ALL-UNNAMED
