@@ -41,12 +41,12 @@ public class DBUtils {
         }
     }
 
-    // Jangan pernah panggil
+    // Jangan pernah panggil, kopas dan sesuaiin di main klo mau buat tabel
     private void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS users (" +
                      " id TEXT PRIMARY KEY, " +
                      " password TEXT NOT NULL, " +
-                     " nama TEXT PRIMARY KEY, " +
+                     " nama TEXT NOT NULL, " +
                      " admin BOOLEAN)";
 
         try (Connection conn = getConnection();

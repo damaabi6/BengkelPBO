@@ -2,7 +2,7 @@ package com.bengkel.Class;
 
 public class Petugas extends User {
 
-    public Petugas(String UserID, String Password, String nama) {
-        super(UserID, Password, nama, false);
+    public Petugas(String UserID,  String username, String Password) {
+        super(UserID, username, Password, false);
     }
 }

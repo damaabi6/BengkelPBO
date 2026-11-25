@@ -21,13 +21,13 @@ public class Karyawan {
 
     public static String generateRandomId() {
         // Menghasilkan angka acak diformat menjadi 8 digit
-        int randomNumber = RANDOM.nextInt(100000000); 
+        int randomNumber = RANDOM.nextInt(100000000);
         return String.format("%08d", randomNumber);
     }
 
     public static List<User> getAllUsers() {
         List<User> daftarUser = new ArrayList<>();
-        String sql = "SELECT id, password, nama, admin FROM users";
+        String sql = "SELECT id, username, password, admin FROM users";
 
         try (Connection conn = DBUtils.getConnection();
              Statement stmt = conn.createStatement();
@@ -36,16 +36,16 @@ public class Karyawan {
             // Looping setiap baris hasil query database
             while (rs.next()) {
                 String id = rs.getString("id");
+                String username = rs.getString("username");
                 String password = rs.getString("password");
-                String nama = rs.getString("nama");
                 boolean admin = rs.getBoolean("admin");
 
                 // Buat objek User baru dan masukkan ke list
                 User user;
                 if (admin) {
-                    user = new Admin(id, password, nama);
+                    user = new Admin(id, username, password);
                 } else {
-                    user = new Petugas(id, password, nama);
+                    user = new Petugas(id, username, password);
                 }
 
                 daftarUser.add(user);
@@ -59,36 +59,21 @@ public class Karyawan {
         return daftarUser;
     }
 
-    public static void insertUser(String nama, String password, boolean admin) {
-       // Query untuk mengecek nama duplikat
-    String checkSql = "SELECT COUNT(*) FROM users WHERE nama = ?";
-    
+    public static void insertUser(String username, String password, boolean admin) {
     // Query untuk insert user baru
-    String insertSql = "INSERT INTO users (id, password, nama, admin) VALUES (?, ?, ?, ?)";
+    String insertSql = "INSERT INTO users (id, username, password, admin) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBUtils.getConnection()) {
-        
-            // Cek duplikat nama 
-            try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-                checkStmt.setString(1, nama);
-                try (ResultSet rs = checkStmt.executeQuery()) {
-                    if (rs.next() && rs.getInt(1) > 0) {
-                        // Jika count > 0, artinya ada duplikat
-                        System.out.println("[KaryawanDB Error] Nama user '" + nama + "' sudah terdaftar. Silakan gunakan nama lain.");
-                        return; // Batalkan proses insert
-                    }
-                }
-            }
 
-            // Jika tak ada duplikat, jalankan proses insert
+
             try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
                 insertStmt.setString(1, generateRandomId());
-                insertStmt.setString(2, password);
-                insertStmt.setString(3, nama);
+                insertStmt.setString(2, username);
+                insertStmt.setString(3, password);
                 insertStmt.setBoolean(4, admin);
 
                 insertStmt.executeUpdate();
-                System.out.println("[KaryawanDB] Data user " + nama + " berhasil ditambahkan.");
+                System.out.println("[KaryawanDB] Data user " + username + " berhasil ditambahkan.");
                 
                 // Update static list users di Main
                 Main.staticUsersList = getAllUsers();
@@ -100,7 +85,7 @@ public class Karyawan {
     }
 
     public static void insertMekanik(String nama) {
-        String sql = "INSERT OR IGNORE INTO mekanik (id, nama) VALUES (?, ?)";
+        String sql = "INSERT INTO mekanik (id, nama) VALUES (?, ?)";
 
         try (Connection conn = DBUtils.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

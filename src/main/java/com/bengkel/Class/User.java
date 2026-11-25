@@ -3,18 +3,18 @@ package com.bengkel.Class;
 public class User {
     private String userID;
     private String password;
-    private String nama;
+    private String username;
     private boolean adminAccess;
     
-    protected User(String UserID, String Password, String nama, boolean admin) {
+    protected User(String UserID, String username, String Password, boolean admin) {
         this.userID = UserID;
+        this.username = username;
         this.password = Password;
-        this.nama = nama;
         this.adminAccess = admin;
     }
 
     public String getId() { return userID; }
     public String getPassword() { return password; }
-    public String getNama() { return nama; }
+    public String getUsername() { return username; }
     public boolean isAdmin() { return adminAccess; }
 }
